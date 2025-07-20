@@ -1,6 +1,6 @@
-window.scrollTo({
-  top: document.body.scrollHeight,
-})
+// window.scrollTo({
+//   top: document.body.scrollHeight,
+// })
 let playingAudio = []
 
 window.addEventListener("DOMContentLoaded", () => {
