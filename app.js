@@ -66,25 +66,57 @@ window.addEventListener("DOMContentLoaded", () => {
   introTitle.textContent = "Intro"
   intro.append(introTitle)
 
-  const introBtn = document.createElement("button")
-  const icon = document.createElement("i")
-  icon.classList.add("material-icons")
-  icon.textContent = "volume_up"
+  // Buttons container for intro
+  const introButtonsContainer = document.createElement("div")
+  introButtonsContainer.classList.add("controls")
+
+  // Play button
+  const introPlayBtn = document.createElement("button")
+  const introPlayIcon = document.createElement("i")
+  introPlayIcon.classList.add("material-icons")
+  introPlayIcon.textContent = "play_arrow"
+  introPlayBtn.appendChild(introPlayIcon)
+
+  // Pause button
+  const introPauseBtn = document.createElement("button")
+  const introPauseIcon = document.createElement("i")
+  introPauseIcon.classList.add("material-icons")
+  introPauseIcon.textContent = "pause"
+  introPauseBtn.appendChild(introPauseIcon)
+
+  // Restart button
+  const introRestartBtn = document.createElement("button")
+  const introRestartIcon = document.createElement("i")
+  introRestartIcon.classList.add("material-icons")
+  introRestartIcon.textContent = "replay"
+  introRestartBtn.appendChild(introRestartIcon)
 
   const audioPath = `audio/intro.mp3`
   const audio = new Audio(audioPath)
-
   playingAudio.push(audio)
 
-  // Only icon triggers playback
-  icon.addEventListener("click", () => {
+  // Play button functionality
+  introPlayIcon.addEventListener("click", () => {
     stopAllAudio()
-    audio.currentTime = 0 // restart if already playing
     audio.play()
   })
 
-  introBtn.appendChild(icon)
-  intro.append(introBtn)
+  // Pause button functionality
+  introPauseIcon.addEventListener("click", () => {
+    audio.pause()
+  })
+
+  // Restart button functionality
+  introRestartIcon.addEventListener("click", () => {
+    stopAllAudio()
+    audio.currentTime = 0
+    audio.play()
+  })
+
+  introButtonsContainer.append(introPlayBtn)
+  introButtonsContainer.append(introPauseBtn)
+  introButtonsContainer.append(introRestartBtn)
+  intro.append(introButtonsContainer)
 
   const tutorial = document.createElement("div")
   tutorial.classList.add("tutorial")
@@ -94,23 +126,57 @@ window.addEventListener("DOMContentLoaded", () => {
   tutorialTitle.textContent = "Tutorial"
   tutorial.append(tutorialTitle)
 
-  const tutorialBtn = document.createElement("button")
-  const icon2 = document.createElement("i")
-  icon2.classList.add("material-icons")
-  icon2.textContent = "volume_up"
+  // Buttons container for tutorial
+  const tutorialButtonsContainer = document.createElement("div")
+  tutorialButtonsContainer.classList.add("controls")
+
+  // Play button
+  const tutorialPlayBtn = document.createElement("button")
+  const tutorialPlayIcon = document.createElement("i")
+  tutorialPlayIcon.classList.add("material-icons")
+  tutorialPlayIcon.textContent = "play_arrow"
+  tutorialPlayBtn.appendChild(tutorialPlayIcon)
+
+  // Pause button
+  const tutorialPauseBtn = document.createElement("button")
+  const tutorialPauseIcon = document.createElement("i")
+  tutorialPauseIcon.classList.add("material-icons")
+  tutorialPauseIcon.textContent = "pause"
+  tutorialPauseBtn.appendChild(tutorialPauseIcon)
+
+  // Restart button
+  const tutorialRestartBtn = document.createElement("button")
+  const tutorialRestartIcon = document.createElement("i")
+  tutorialRestartIcon.classList.add("material-icons")
+  tutorialRestartIcon.textContent = "replay"
+  tutorialRestartBtn.appendChild(tutorialRestartIcon)
 
   const audioPath2 = `audio/lesson-${lessonNumber}/tutorial.mp3`
   const audio2 = new Audio(audioPath2)
   playingAudio.push(audio2)
 
-  icon2.addEventListener("click", () => {
+  // Play button functionality
+  tutorialPlayIcon.addEventListener("click", () => {
     stopAllAudio()
-    audio2.currentTime = 0 // restart if already playing
     audio2.play()
   })
-  tutorialBtn.appendChild(icon2)
 
-  tutorial.append(tutorialBtn)
+  // Pause button functionality
+  tutorialPauseIcon.addEventListener("click", () => {
+    audio2.pause()
+  })
+
+  // Restart button functionality
+  tutorialRestartIcon.addEventListener("click", () => {
+    stopAllAudio()
+    audio2.currentTime = 0
+    audio2.play()
+  })
+
+  tutorialButtonsContainer.append(tutorialPlayBtn)
+  tutorialButtonsContainer.append(tutorialPauseBtn)
+  tutorialButtonsContainer.append(tutorialRestartBtn)
+  tutorial.append(tutorialButtonsContainer)
 })
 
 function stopAllAudio() {

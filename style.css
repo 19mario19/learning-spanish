@@ -309,8 +309,8 @@ button {
     color: var(--blue);
     font-family: var(--font-main);
     font-weight: var(--font-weight-black);
-    border-radius: var(--radius);
-    border: none;
+    border-radius: var(--radius-full);
+    border: 2px solid var(--blue);
     box-shadow: var(--shadow-button) var(--blue-light);
     cursor: pointer;
     opacity: 0.78;
