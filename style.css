@@ -329,11 +329,7 @@ button {
         /* transform: translateY(-1px); */
     }
 
-    &:active {
-        /* transform: translateY(2px); */
-        /* box-shadow: none; */
-        transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-    }
+
 
     &.active {
         background-color: var(--green);
@@ -343,7 +339,8 @@ button {
     }
 
     &.active:hover {
-        /* box-shadow: var(--shadow-button-lg) var(--green-dark); */
+        background-color: var(--orange);
+        /* box-shadow: var(--shadow-button-lg) var(--orange); */
     }
 }
 
@@ -384,10 +381,13 @@ body {
     /* Just for visibility */
 
     position: fixed;
-    bottom: 10px;
+    bottom: var(--pad-lg);
     right: var(--pad-md);
     left: var(--pad-md);
     z-index: 1000;
+
+    max-width: 704px;
+    margin: 0 auto;
 
 
     display: flex;
@@ -397,11 +397,11 @@ body {
 
     opacity: 0;
     height: 0;
-    
+
     &.active {
         opacity: 1;
         height: auto;
-        
+
     }
 
 
