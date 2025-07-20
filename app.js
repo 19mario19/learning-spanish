@@ -2,6 +2,9 @@
 //   top: document.body.scrollHeight,
 // })
 let playingAudio = []
+let buttons = []
+
+let currentAudio = null
 
 window.addEventListener("DOMContentLoaded", () => {
   const spanToggle = document.querySelector(".toggle-translation")
@@ -15,8 +18,6 @@ window.addEventListener("DOMContentLoaded", () => {
       span.classList.toggle("active")
     })
   })
-
-  const buttons = []
 
   const stopAudio = document.querySelector(".stop-audio")
   stopAudio.addEventListener("click", () => stopAllAudio())
@@ -34,7 +35,6 @@ window.addEventListener("DOMContentLoaded", () => {
     title.appendChild(btn)
 
     const audioPath = `/audio/lesson-${lessonNumber}/${index + 1}.mp3`
-    console.log(audioPath)
     const audio = new Audio(audioPath)
     playingAudio.push(audio)
 
@@ -49,6 +49,7 @@ window.addEventListener("DOMContentLoaded", () => {
       stopAllAudio()
       audio.currentTime = 0
       audio.play()
+      setCurrentAudio(audio)
     })
   })
 
@@ -99,6 +100,7 @@ window.addEventListener("DOMContentLoaded", () => {
   introPlayIcon.addEventListener("click", () => {
     stopAllAudio()
     audio.play()
+    setCurrentAudio(audio)
   })
 
   // Pause button functionality
@@ -159,6 +161,7 @@ window.addEventListener("DOMContentLoaded", () => {
   tutorialPlayIcon.addEventListener("click", () => {
     stopAllAudio()
     audio2.play()
+    setCurrentAudio(audio2)
   })
 
   // Pause button functionality
@@ -177,14 +180,78 @@ window.addEventListener("DOMContentLoaded", () => {
   tutorialButtonsContainer.append(tutorialPauseBtn)
   tutorialButtonsContainer.append(tutorialRestartBtn)
   tutorial.append(tutorialButtonsContainer)
+
+  // player
+
+  const audioPlayer = document.createElement("div")
+  audioPlayer.classList.add("audio-player")
+
+  document.body.append(audioPlayer)
+
+  const playButton = document.createElement("button")
+  const playIcon = document.createElement("i")
+  playIcon.classList.add("material-icons")
+  playIcon.textContent = "play_arrow"
+  playButton.append(playIcon)
+
+  playButton.addEventListener("click", () => {
+    console.log("play")
+    getCurrentAudio().play()
+  })
+
+  const pauseButton = document.createElement("button")
+  const pauseIcon = document.createElement("i")
+  pauseIcon.classList.add("material-icons")
+  pauseIcon.textContent = "pause"
+  pauseButton.append(pauseIcon)
+
+  pauseButton.addEventListener("click", () => {
+    console.log("pause")
+    getCurrentAudio().pause()
+  })
+
+  const restartButton = document.createElement("button")
+  const restartIcon = document.createElement("i")
+  restartIcon.classList.add("material-icons")
+  restartIcon.textContent = "replay"
+  restartButton.append(restartIcon)
+
+  restartButton.addEventListener("click", () => {
+    console.log("replay")
+    getCurrentAudio().currentTime = 0
+    getCurrentAudio().play()
+  })
+
+  const stopButton = document.createElement("button")
+  const stopIcon = document.createElement("i")
+  stopIcon.classList.add("material-icons")
+  stopIcon.textContent = "stop"
+  stopButton.append(stopIcon)
+
+  stopButton.addEventListener("click", () => {
+    stopAllAudio()
+  })
+
+  audioPlayer.append(playButton, pauseButton, restartButton, stopButton)
 })
 
 function stopAllAudio() {
   playingAudio.forEach((audio) => audio.pause())
+  document?.querySelector(".audio-player").classList.remove("active")
 }
 
 function removeAllActive(elements) {
   elements.forEach((el) => {
     if (el.classList.contains("active")) el.classList.remove("active")
   })
+}
+
+function setCurrentAudio(newAudio) {
+  console.log("new audio: ", newAudio)
+  currentAudio = newAudio
+  document?.querySelector(".audio-player").classList.add("active")
+}
+function getCurrentAudio() {
+  if (currentAudio !== null) return currentAudio
+  console.log("current audio is null!")
 }
