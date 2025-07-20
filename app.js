@@ -1,6 +1,12 @@
 // window.scrollTo({
 //   top: document.body.scrollHeight,
 // })
+
+window.scrollTo({
+  top: 0,
+  left: 0,
+  behavior: "auto", // or "smooth"
+})
 let playingAudio = []
 let buttons = []
 

@@ -137,7 +137,7 @@ p {
     align-items: center;
     justify-content: space-between;
     gap: var(--pad-sm);
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     /* box-shadow: var(--shadow-sm); */
     transition: all var(--transition-smooth);
 
