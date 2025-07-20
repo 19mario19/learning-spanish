@@ -43,6 +43,7 @@ main {
     grid-template-columns: 1fr;
     flex-wrap: wrap;
     gap: var(--pad-xl);
+    margin-top: var(--pad-lg);
 }
 
 h1 {
